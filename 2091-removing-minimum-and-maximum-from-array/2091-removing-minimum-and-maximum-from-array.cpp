@@ -1,20 +1,17 @@
 class Solution {
 public:
     int minimumDeletions(vector<int>& nums) {
-        int count = 0;
-        vector<int> k;
         int n = nums.size();
-        auto minit = min_element(nums.begin(),nums.end()) - nums.begin();
-        auto maxit = max_element(nums.begin(),nums.end()) - nums.begin();
-        int t = max(minit, maxit) + 1; //Remove index from front
-        k.push_back(t);
-        int l = n - min(minit, maxit); // remove index from back
-        k.push_back(l);
-        int c = (minit + 1) + (n - maxit); // onr from front and one from back
-         k.push_back(c);
-        int j = (maxit + 1) + (n - minit); // max from ront and min from back
-         k.push_back(j);
-         return *min_element(k.begin(),k.end());
+
+        int minIndex = min_element(nums.begin(), nums.end()) - nums.begin();
+        int maxIndex = max_element(nums.begin(), nums.end()) - nums.begin();
+
+        int front = max(minIndex, maxIndex) + 1;
+        int back = n - min(minIndex, maxIndex);
+        int mixed1 = (minIndex + 1) + (n - maxIndex);
+        int mixed2 = (maxIndex + 1) + (n - minIndex);
+
+        return min({front, back, mixed1, mixed2});
     }
 };
 
