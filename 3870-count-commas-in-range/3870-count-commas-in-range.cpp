@@ -5,10 +5,7 @@ public:
         if(n < 1000){
             return 0;
         }
-        for(int k = 1000; k <= n; k++){
-            count++;
-        }
-        return count;
+        return (n - 1000)+1;
     }
 };
 
